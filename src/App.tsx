@@ -10,7 +10,7 @@ function App(){
 
   return (    
   <>
-    <TablaMenu></TablaMenu>
+    <TablaMenu sesionado={false}></TablaMenu>
     <Head></Head>
     <CarrouselMain></CarrouselMain>
     <CardMain></CardMain>
