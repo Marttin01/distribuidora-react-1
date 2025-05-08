@@ -1,27 +1,41 @@
-import { Avatar, WrapItem } from "@chakra-ui/react";
+import CardCategoriasProductosAvatar from "./CardCategoriasProductosAvatar";
 
 interface Props {
     onAvatarClick: (value: boolean) => void;
-    producto: {
+    subCategoria: {
         nombre: string;
-        precio: number;
+        titulo: string;
         descripcion: string;
         imgSrc: string;
-        categoria: string;
-        stock: number;
-    }; 
+        productos:
+            {
+                nombre: string;
+                precio: number;
+                descripcion: string;
+                imgSrc: string;
+                categoria: string;
+                stock: number;  
+            }[];
+    };
 }
 
-function CardCategoriasProductos({producto, onAvatarClick}: Props) {
+function CardCategoriasProductos({subCategoria, onAvatarClick}: Props) {
 
     const handleAvatarClick = () => {
         onAvatarClick(true);
     }
 
     return (
-        <WrapItem mr={"10"}>
-          <Avatar size={'xl'} name={producto.nombre} src='https://bit.ly/sage-adebayo' onClick={handleAvatarClick} />
-        </WrapItem>
+        <>
+        {
+            subCategoria.productos.map((p,index) => (<CardCategoriasProductosAvatar key={index} onAvatarClick={handleAvatarClick} producto={p}/>))
+        }        
+        </>
+
+
+        // <WrapItem mr={"10"}>
+        //   <Avatar size={'xl'} name={producto.nombre} src='https://bit.ly/sage-adebayo' onClick={handleAvatarClick} />
+        // </WrapItem>
     )
 }
 

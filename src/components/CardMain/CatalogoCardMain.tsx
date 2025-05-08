@@ -9,6 +9,7 @@ function CatalogoCardMain () {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
 
     const categorias = [
+
       {
         nombre: "gaseosasCola",
         titulo:"GASEOSAS COLAS",
@@ -275,8 +276,7 @@ function CatalogoCardMain () {
               }
             ]
           }
-        ]
-       
+        ]      
       },
 
 
@@ -311,9 +311,36 @@ function CatalogoCardMain () {
             categoria:"bebidasIsotonicas",
             stock:10
           }
+        ],
+        subCategorias: [
+          {
+            nombre:"bebidasIsotonicasSinAzucar",
+            titulo:"MONSTER SIN AZUCAR",
+            descripcion:"Monster sin azucar",
+            imgSrc:"https://bit.ly/ryan-florence",
+            productos:[
+              {
+                nombre:"Monster sin azucar 500ml x6",
+                precio:1000,
+                descripcion:"Monster sin azucar",
+                imgSrc:"https://bit.ly/tioluwani-kolawole",
+                categoria:"bebidasIsotonicasSinAzucar",
+                stock:10
+              },
+              {
+                nombre:"Monster sin azucar 1L x6",
+                precio:2000,
+                descripcion:"Monster sin azucar ",
+                imgSrc:"https://bit.ly/tioluwani-kolawole",
+                categoria:"bebidasIsotonicasSinAzucar",
+                stock:10
+              }
+            ]
+          }
         ]
       }
-    ]
+
+   ]
 
     const handleAvatarClick = (value : boolean, categoria : string) => {
       if(value) {
@@ -337,7 +364,7 @@ function CatalogoCardMain () {
               <CardGaseosasSabores></CardGaseosasSabores>
               <CardAguasCategorias></CardAguasCategorias>
               <CardBebidasIsotonicasCategorias></CardBebidasIsotonicasCategorias> */}
-               {categorias.map( (categoria,index) => (<CardCategorias key={index} nombre={categoria.nombre} titulo={categoria.titulo} descripcion={categoria.descripcion} imgSrc={categoria.imgSrc} productos={categoria.productos} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
+               {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} productos={categoria.productos} subCategorias={categoria.subCategorias} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
 
             </>
           )}
