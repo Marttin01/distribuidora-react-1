@@ -1,98 +1,176 @@
-import {  Avatar, Card, CardBody, CardHeader, Center, Heading, SimpleGrid, WrapItem } from "@chakra-ui/react"
+import { Center, SimpleGrid } from "@chakra-ui/react"
+
+import { useState } from "react"
+import CardCategorias from "./ProductosCategorias/CardCategorias";
+import CardCategoriasProductosMain from "./ProductosCategorias/CardCategoriasProductosMain";
 
 function CatalogoCardMain () {
+
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
+
+    const categorias = [
+      {
+        nombre: "gaseosasCola",
+        titulo:"GASEOSAS COLAS",
+        descripcion:" Gaseosas marca coca cola",
+        imgSrc:"https://bit.ly/code-beast",
+        productos:[
+          {
+            nombre:"Coca Cola 500ml x6",
+            precio:1000,
+            descripcion:"Coca cola sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasCola",
+            stock:10
+          },
+          {
+            nombre:"Coca Cola 1L x6",
+            precio:2000,
+            descripcion:"Coca cola sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasCola",
+            stock:10
+          },
+          {
+            nombre:"Coca Cola 2L x6",
+            precio:4000,
+            descripcion:"Coca cola sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasCola",
+            stock:10
+          }
+        ]
+      },
+      {
+        nombre: "gaseosasSabores",
+        titulo:"GASEOSAS SABORES",
+        descripcion:" Gaseosas de sabores",
+        imgSrc:"https://bit.ly/code-beast",
+        productos:[
+          {
+            nombre:"Aquarius 500ml x6",
+            precio:1000,
+            descripcion:"Aquarius sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasSabores",
+            stock:10
+          },
+          {
+            nombre:"Aquarius 1L x6",
+            precio:2000,
+            descripcion:"Aquarius sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasSabores",
+            stock:10
+          },
+          {
+            nombre:"Aquarius 2L x6",
+            precio:4000,
+            descripcion:"Aquarius sabor original",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"gaseosasSabores",
+            stock:10
+          }
+        ]
+      },
+      {
+        nombre: "aguas",
+        titulo:"AGUAS SABORIZADAS",
+        descripcion:" Aguas saborizadas",
+        imgSrc:"https://bit.ly/code-beast",
+        productos:[
+          {
+            nombre:"Agua SmartWater 500ml x6",
+            precio:1000,
+            descripcion:"Agua SmartWater",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"aguas",
+            stock:10
+          },
+          {
+            nombre:"Agua SmartWater 1L x6",
+            precio:2000,
+            descripcion:"Agua SmartWater",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"aguas",
+            stock:10
+          },
+          {
+            nombre:"Agua SmartWater 2L x6",
+            precio:4000,
+            descripcion:"Agua SmartWater",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"aguas",
+            stock:10
+          }
+        ]
+      },
+      {
+        nombre: "bebidasIsotonicas",
+        titulo:"BEBIDAS ISOTONICAS",
+        descripcion:" Bebidas isotonicas",
+        imgSrc:"https://bit.ly/code-beast",
+        productos:[
+          {
+            nombre:"Monster 500ml x6",
+            precio:1000,
+            descripcion:"Monster",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"bebidasIsotonicas",
+            stock:10
+          },
+          {
+            nombre:"Monster 1L x6",
+            precio:2000,
+            descripcion:"Monster",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"bebidasIsotonicas",
+            stock:10
+          },
+          {
+            nombre:"Monster 2L x6",
+            precio:4000,
+            descripcion:"Monster",
+            imgSrc:"https://bit.ly/code-beast",
+            categoria:"bebidasIsotonicas",
+            stock:10
+          }
+        ]
+      }
+    ]
+
+    const handleAvatarClick = (value : boolean, categoria : string) => {
+      if(value) {
+        setCategoriaSeleccionada(categoria);
+      }
+    }
+
+    const handleCloseIconClick = (value : boolean) => {
+      if(value){
+        setCategoriaSeleccionada(null);
+      }
+    }
+
     return (
         <Center display={"flex"} flexDirection={"column"} >
         <SimpleGrid marginTop={1} boxSize={'auto'} maxWidth={'100%'}spacing={1} alignItems={'center'} templateColumns='repeat(1, 1fr)' justifyContent={"center"}>
-          <Card  mx={"auto"} backgroundColor={'ButtonShadow'} mt={"7"} w={"100%"}>
-            <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
-              <Heading size='lg'> GASEOSAS COLAS</Heading>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"10"}> 
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-            </CardHeader>
-            <CardBody>
-              
-            </CardBody>
-          </Card>
 
-          <Card  mx={"auto"} backgroundColor={'ButtonShadow'} mt={"7"} w={"100%"}>
-            <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
-              <Heading size='lg'> GASEOSAS SABORES</Heading>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"10"}> 
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
+          {categoriaSeleccionada === null && (
+            <>
+              {/* <CardGaseosasColaCategorias onAvatarClick={(value) => handleAvatarClick(value,  "gaseosasCola")}></CardGaseosasColaCategorias>
+              <CardGaseosasSabores></CardGaseosasSabores>
+              <CardAguasCategorias></CardAguasCategorias>
+              <CardBebidasIsotonicasCategorias></CardBebidasIsotonicasCategorias> */}
+               {categorias.map( (categoria,index) => (<CardCategorias key={index} nombre={categoria.nombre} titulo={categoria.titulo} descripcion={categoria.descripcion} imgSrc={categoria.imgSrc} productos={categoria.productos} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
 
-            </CardHeader>
-            <CardBody>
-              
-            </CardBody>
-          </Card>
+            </>
+          )}
 
-          <Card  mx={"auto"} backgroundColor={'ButtonShadow'} mt={"7"} w={"100%"}>
-            <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
-              <Heading size='lg'>AGUAS</Heading>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"10"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-
-            </CardHeader>
-            <CardBody>
-              
-            </CardBody>
-          </Card>
-
-          <Card  mx={"auto"} backgroundColor={'ButtonShadow'} mt={"7"} w={"100%"}>
-            <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
-              <Heading size='lg'>BEBIDAS ISOTONICAS</Heading>
-              <WrapItem mr={"6"}>
-                <Avatar size={'xl'} name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-              </WrapItem>
-              <WrapItem mr={"6"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"6"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"6"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-              <WrapItem mr={"6"}>
-                <Avatar size={'xl'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
-              </WrapItem>
-
-            </CardHeader>
-            <CardBody>
-              
-            </CardBody>
-          </Card>
+          {categoriaSeleccionada &&(
+            <>
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || []}/>
+            </>
+          )}
 
         </SimpleGrid>
         </Center>
