@@ -2,7 +2,7 @@ import CardCategoriasProductosAvatar from "./CardCategoriasProductosAvatar";
 
 interface Props {
     onAvatarClick: (value: boolean) => void;
-    subCategoria: {
+    subCategorias: {
         nombre: string;
         titulo: string;
         descripcion: string;
@@ -16,10 +16,10 @@ interface Props {
                 categoria: string;
                 stock: number;  
             }[];
-    };
+    }[];
 }
 
-function CardCategoriasProductos({subCategoria, onAvatarClick}: Props) {
+function CardCategoriasProductos({subCategorias, onAvatarClick}: Props) {
 
     const handleAvatarClick = () => {
         onAvatarClick(true);
@@ -28,7 +28,13 @@ function CardCategoriasProductos({subCategoria, onAvatarClick}: Props) {
     return (
         <>
         {
-            subCategoria.productos.map((p,index) => (<CardCategoriasProductosAvatar key={index} onAvatarClick={handleAvatarClick} producto={p}/>))
+            // subCategoria.productos.map((p,index) => (<CardCategoriasProductosAvatar key={index} onAvatarClick={handleAvatarClick} producto={p}/>))
+            
+            // <CardCategoriasProductosAvatar onAvatarClick={handleAvatarClick} imgSrc={"subCategorias"}/>
+
+            subCategorias.map( (s) => (<CardCategoriasProductosAvatar key={s.nombre} onAvatarClick={handleAvatarClick} imgSrc={s.imgSrc}/>))
+
+
         }        
         </>
 

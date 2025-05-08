@@ -4,14 +4,16 @@ import CardCategoriasProductos from "./CardCategoriasProductos";
 interface Props {
     onAvatarClick: (value: boolean) => void;
     titulo: string;
-    productos: {
-        nombre:string;
-        precio:number;
-        descripcion:string;
-        imgSrc:string;
-        categoria:string;
-        stock:number;
-    }[];
+    imgSrc:string;
+    nombre:string;
+    // productos: {
+    //     nombre:string;
+    //     precio:number;
+    //     descripcion:string;
+    //     imgSrc:string;
+    //     categoria:string;
+    //     stock:number;
+    // }[];
     subCategorias: {
         nombre: string;
         titulo: string;
@@ -29,7 +31,7 @@ interface Props {
     }[];
 }
 
-function CardCategorias({onAvatarClick, titulo, subCategorias} : Props){
+function CardCategorias({onAvatarClick, titulo, imgSrc, nombre, subCategorias} : Props){
 
     const handleAvatarClick = () => {
         onAvatarClick(true);
@@ -41,7 +43,9 @@ function CardCategorias({onAvatarClick, titulo, subCategorias} : Props){
           <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
             <Heading size='lg'>{titulo}</Heading>
 
-                {subCategorias.map( (sub,index) => (<CardCategoriasProductos  onAvatarClick={handleAvatarClick} key={index} subCategoria={sub} ></CardCategoriasProductos>))}
+                {/* <CardCategoriasProductos onAvatarClick={handleAvatarClick} key={nombre} /> */}
+
+                {subCategorias.map( (s) => (<CardCategoriasProductos  onAvatarClick={handleAvatarClick} key={s.nombre} subCategorias={subCategorias} ></CardCategoriasProductos>))}
 
 
 

@@ -360,18 +360,15 @@ function CatalogoCardMain () {
 
           {categoriaSeleccionada === null && (
             <>
-              {/* <CardGaseosasColaCategorias onAvatarClick={(value) => handleAvatarClick(value,  "gaseosasCola")}></CardGaseosasColaCategorias>
-              <CardGaseosasSabores></CardGaseosasSabores>
-              <CardAguasCategorias></CardAguasCategorias>
-              <CardBebidasIsotonicasCategorias></CardBebidasIsotonicasCategorias> */}
-               {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} productos={categoria.productos} subCategorias={categoria.subCategorias} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
-
+               {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
             </>
           )}
 
           {categoriaSeleccionada &&(
             <>
-              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || []}/>
+              {/* <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || []}/> */}
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick}productos={(categorias.find(c => c.nombre === categoriaSeleccionada) || categorias.find(c => c.subCategorias.find(s => s.nombre === categoriaSeleccionada)))?.productos || []}
+            />
             </>
           )}
 
