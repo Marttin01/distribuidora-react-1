@@ -11,6 +11,7 @@ interface Props {
         imgSrc: string;
     }[];
 }
+          /** ACA ES DONDE SE MUESTRAN LOS PRODUCTOS DE LAS SUBCATEGORIAS Y CATEGORIAS **/
 
 function CardCategoriasProductosMain({onCloseIconClick, productos} : Props) {
 
@@ -21,13 +22,15 @@ function CardCategoriasProductosMain({onCloseIconClick, productos} : Props) {
     return (
         <Box p={4} position="relative" mt={7}>
               <IconButton onClick={handleCloseIconClick}
-                aria-label="Cerrar" icon={<CloseIcon onClick={handleCloseIconClick} />}  position="absolute" top={2} right={2} size="sm" variant="ghost" 
+                aria-label="Cerrar" icon={<CloseIcon onClick={handleCloseIconClick} />}  position="absolute" top={1} right={6} size="lg" variant="ghost" 
               />
-              <SimpleGrid columns={[1, 2, 3, 4]} spacing={4}>
+              <SimpleGrid columns={[productos.length]} spacing={4} mt={12}>
+
         
                 {productos.map((producto, index) => (
                   <CardCategoriasProductoMainProducto key={index} producto={producto} />
                 ))}
+                
         
               </SimpleGrid>
         </Box>

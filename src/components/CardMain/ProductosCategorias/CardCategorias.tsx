@@ -1,40 +1,24 @@
 import { Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
 import CardCategoriasProductos from "./CardCategoriasProductos";
+import CardCategoriasProductos2 from "./CardCategoriasProductos2";
 
 interface Props {
-    onAvatarClick: (value: boolean) => void;
+    onAvatarClick: (value: boolean, categoria : string) => void;
     titulo: string;
     imgSrc:string;
     nombre:string;
-    // productos: {
-    //     nombre:string;
-    //     precio:number;
-    //     descripcion:string;
-    //     imgSrc:string;
-    //     categoria:string;
-    //     stock:number;
-    // }[];
     subCategorias: {
         nombre: string;
         titulo: string;
         descripcion: string;
         imgSrc: string;
-        productos:
-            {
-                nombre: string;
-                precio: number;
-                descripcion: string;
-                imgSrc: string;
-                categoria: string;
-                stock: number;  
-            }[];
     }[];
 }
 
-function CardCategorias({onAvatarClick, titulo, imgSrc, nombre, subCategorias} : Props){
+function CardCategorias({onAvatarClick ,titulo, imgSrc, nombre, subCategorias} : Props){
 
-    const handleAvatarClick = () => {
-        onAvatarClick(true);
+    const handleAvatarClick = (value : boolean, categoria : string) => {
+        onAvatarClick(value, categoria);
     }
    
     return(
@@ -43,11 +27,9 @@ function CardCategorias({onAvatarClick, titulo, imgSrc, nombre, subCategorias} :
           <CardHeader display={"flex"} justifyContent={"space-between"} alignItems={"center"} gap={"10"} flexWrap={"wrap"}>
             <Heading size='lg'>{titulo}</Heading>
 
-                {/* <CardCategoriasProductos onAvatarClick={handleAvatarClick} key={nombre} /> */}
+                <CardCategoriasProductos2 onAvatarClick={value => handleAvatarClick(value,nombre)} key={nombre} nombre={nombre} imgSrc={imgSrc} titulo={titulo}/>
 
-                {subCategorias.map( (s) => (<CardCategoriasProductos  onAvatarClick={handleAvatarClick} key={s.nombre} subCategorias={subCategorias} ></CardCategoriasProductos>))}
-
-
+                {subCategorias.map( s => (<CardCategoriasProductos  onAvatarClick={value => handleAvatarClick(value,s.nombre)} key={s.nombre} nombre={s.nombre} imgSrc={s.imgSrc} ></CardCategoriasProductos>))}
 
           </CardHeader>
           <CardBody>             

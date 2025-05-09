@@ -6,8 +6,6 @@ import CardCategoriasProductosMain from "./ProductosCategorias/CardCategoriasPro
 
 function CatalogoCardMain () {
 
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
-
     const categorias = [
 
       {
@@ -342,6 +340,8 @@ function CatalogoCardMain () {
 
    ]
 
+   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
+
     const handleAvatarClick = (value : boolean, categoria : string) => {
       if(value) {
         setCategoriaSeleccionada(categoria);
@@ -355,20 +355,19 @@ function CatalogoCardMain () {
     }
 
     return (
+
         <Center display={"flex"} flexDirection={"column"} >
         <SimpleGrid marginTop={1} boxSize={'auto'} maxWidth={'100%'}spacing={1} alignItems={'center'} templateColumns='repeat(1, 1fr)' justifyContent={"center"}>
 
           {categoriaSeleccionada === null && (
             <>
-               {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={value => handleAvatarClick(value, categoria.nombre)}></CardCategorias>))}
+               {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={(value,categoria) => handleAvatarClick(value, categoria)}></CardCategorias>))}
             </>
           )}
 
           {categoriaSeleccionada &&(
             <>
-              {/* <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || []}/> */}
-              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick}productos={(categorias.find(c => c.nombre === categoriaSeleccionada) || categorias.find(c => c.subCategorias.find(s => s.nombre === categoriaSeleccionada)))?.productos || []}
-            />
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaSeleccionada)?.productos || []}/>
             </>
           )}
 
