@@ -19,9 +19,7 @@ function CardCategoriasProductos({nombre,imgSrc, onAvatarClick}: Props) {
             <WrapItem mr={"10"}>
                 <Avatar size={'xl'} name={nombre} src={imgSrc} onClick={handleAvatarClick} />
             </WrapItem>            
-        
-
-      
+          
         </>
 
     )
