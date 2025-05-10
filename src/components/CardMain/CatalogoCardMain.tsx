@@ -1,6 +1,6 @@
 import { Center, SimpleGrid } from "@chakra-ui/react"
 
-import { useState } from "react"
+import  {  useState } from "react"
 import CardCategorias from "./ProductosCategorias/CardCategorias";
 import CardCategoriasProductosMain from "./ProductosCategorias/CardCategoriasProductosMain";
 
@@ -342,7 +342,7 @@ function CatalogoCardMain () {
 
    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
 
-    const handleAvatarClick = (value : boolean, categoria : string) => {
+    const handleAvatarClick = (value : boolean, categoria  : string) => {
       if(value) {
         setCategoriaSeleccionada(categoria);
       }
@@ -351,7 +351,7 @@ function CatalogoCardMain () {
     const handleCloseIconClick = (value : boolean) => {
       if(value){
         setCategoriaSeleccionada(null);
-      }
+      }  
     }
 
     return (
@@ -362,6 +362,7 @@ function CatalogoCardMain () {
           {categoriaSeleccionada === null && (
             <>
                {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={(value,categoria) => handleAvatarClick(value, categoria)}></CardCategorias>))}
+                {/* {categorias.map( (categoria,index) => (<CardCategorias ref={(ref) => handleAvatarClick(true,categoria.                nombre,ref)} key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={handleAvatarClick}></CardCategorias>))} */}
             </>
           )}
 

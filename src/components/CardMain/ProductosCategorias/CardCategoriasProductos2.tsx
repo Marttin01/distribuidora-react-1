@@ -1,13 +1,12 @@
-import CardCategoriasProductosAvatar from "./CardCategoriasProductosAvatar";
+import { Avatar, WrapItem } from "@chakra-ui/react";
 
 interface Props {
     onAvatarClick: (value: boolean) => void;
     nombre:string;
-    titulo:string;
     imgSrc:string;
 }
 
-function CardCategoriasProductos2({nombre,titulo,imgSrc,onAvatarClick}: Props) {
+function CardCategoriasProductos2({nombre,imgSrc,onAvatarClick}: Props) {
 
     const handleAvatarClick = () => {
         onAvatarClick(true);
@@ -15,10 +14,9 @@ function CardCategoriasProductos2({nombre,titulo,imgSrc,onAvatarClick}: Props) {
 
     return (
         <>
-        {
-
-            <CardCategoriasProductosAvatar onAvatarClick={handleAvatarClick} key={nombre} imgSrc={imgSrc} name={titulo}/>
-        }        
+            <WrapItem mr={"10"}>
+                <Avatar size={'xl'} name={nombre} src={imgSrc} onClick={handleAvatarClick} />
+            </WrapItem>                 
         </>
 
     )

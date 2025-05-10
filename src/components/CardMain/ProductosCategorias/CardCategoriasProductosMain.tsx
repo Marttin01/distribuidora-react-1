@@ -1,6 +1,7 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import { Box, IconButton, SimpleGrid } from "@chakra-ui/react";
 import CardCategoriasProductoMainProducto from "./CardCategoriasProductoMainProducto";
+import { useRef } from "react";
 
 interface Props {
     onCloseIconClick: (value: boolean) => void;
@@ -15,15 +16,19 @@ interface Props {
 
 function CardCategoriasProductosMain({onCloseIconClick, productos} : Props) {
 
+  const inputRef = useRef<HTMLButtonElement>(null);
+
     const handleCloseIconClick = () => {
         onCloseIconClick(true);
+        if(inputRef.current) {
+            inputRef.current.focus();
+        }
     }
 
     return (
         <Box p={4} position="relative" mt={7}>
               <IconButton onClick={handleCloseIconClick}
-                aria-label="Cerrar" icon={<CloseIcon onClick={handleCloseIconClick} />}  position="absolute" top={1} right={6} size="lg" variant="ghost" 
-              />
+                aria-label="Cerrar" icon={<CloseIcon onClick={handleCloseIconClick} />}position="absolute" top={1} right={6} size="lg" variant="ghost" ref={inputRef}/>
               <SimpleGrid columns={[productos.length]} spacing={4} mt={12}>
 
         
