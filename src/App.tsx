@@ -11,7 +11,7 @@ function App(){
 
   return (    
   <>
-    <TablaMenu sesionado={false}></TablaMenu>
+    <TablaMenu sesionado={true} admin={true}></TablaMenu>
     <Head></Head>
     <CarrouselMain></CarrouselMain>
     <CardMain></CardMain>
