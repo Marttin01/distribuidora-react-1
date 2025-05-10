@@ -24,10 +24,6 @@ function CardCategoriasProductos({nombre,imgSrc, onAvatarClick}: Props) {
       
         </>
 
-
-        // <WrapItem mr={"10"}>
-        //   <Avatar size={'xl'} name={producto.nombre} src='https://bit.ly/sage-adebayo' onClick={handleAvatarClick} />
-        // </WrapItem>
     )
 }
 
