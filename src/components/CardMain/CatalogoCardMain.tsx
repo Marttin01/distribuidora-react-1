@@ -1,10 +1,14 @@
 import { Center, SimpleGrid } from "@chakra-ui/react"
 
-import  {  useState } from "react"
+import  {  useEffect, useState } from "react"
 import CardCategorias from "./ProductosCategorias/CardCategorias";
 import CardCategoriasProductosMain from "./ProductosCategorias/CardCategoriasProductosMain";
 
-function CatalogoCardMain () {
+interface Props {
+  categoria2: string | null | undefined;
+}
+
+function CatalogoCardMain ({categoria2} : Props) {
 
     const categorias = [
 
@@ -340,37 +344,55 @@ function CatalogoCardMain () {
 
    ]
 
-   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null);
-
+   const [categoriaActual, setCategoriaActual] = useState<string | null>(null);
+   
+   
     const handleAvatarClick = (value : boolean, categoria  : string) => {
       if(value) {
-        setCategoriaSeleccionada(categoria);
+        setCategoriaActual(categoria);
       }
     }
 
+    const handleAvatarClick2 = (categoria : string) =>{
+      setCategoriaActual(categoria);
+    }
+   
     const handleCloseIconClick = (value : boolean) => {
       if(value){
-        setCategoriaSeleccionada(null);
+        setCategoriaActual(null);;
       }  
     }
+
+    useEffect(() => {
+    if (categoria2) {
+      setCategoriaActual(null)
+      handleAvatarClick2(categoria2);
+    }
+    }, [categoria2]);
 
     return (
 
         <Center display={"flex"} flexDirection={"column"} >
         <SimpleGrid marginTop={1} boxSize={'auto'} maxWidth={'100%'}spacing={1} alignItems={'center'} templateColumns='repeat(1, 1fr)' justifyContent={"center"}>
 
-          {categoriaSeleccionada === null && (
+          {!categoriaActual  &&(
             <>
                {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={(value,categoria) => handleAvatarClick(value, categoria)}></CardCategorias>))}
                 {/* {categorias.map( (categoria,index) => (<CardCategorias ref={(ref) => handleAvatarClick(true,categoria.                nombre,ref)} key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={handleAvatarClick}></CardCategorias>))} */}
             </>
           )}
 
-          {categoriaSeleccionada &&(
+          {categoriaActual &&(
             <>
-              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaSeleccionada)?.productos || []}/>
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaActual)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaActual)?.productos || []}/>
             </>
           )}
+
+          {/* {categoriaSeleccionada2 &&(
+            <>
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada2)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaSeleccionada2)?.productos || []}/>
+            </>
+          )} */}
 
         </SimpleGrid>
         </Center>

@@ -19,6 +19,7 @@ interface Props {
 function CardCategorias ({onAvatarClick ,titulo, imgSrc, nombre, subCategorias} : Props)  {
 
     const handleAvatarClick = (value : boolean, categoria : string) => {
+        console.log(" clickeada pasando por CardCategorias: ", categoria);
         onAvatarClick(value, categoria);
     }
    

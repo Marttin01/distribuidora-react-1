@@ -335,13 +335,21 @@ import CategoriasCardMain from "./CategoriasCardMain"
 
    ]
 
+interface Props {
+    onAvatarClick: (value: string) => void;
+    }
 
-function CardMain () {
+function CardMain ({onAvatarClick}: Props)  {
+
+    const handleAvatarClick = (categoria : string) => {
+      onAvatarClick(categoria);
+    }
+
     return (
         <Card backgroundColor={'ButtonShadow'} padding={'15'} align={'initial'} mt={"7"}>
             <CardBody>
                 <Text ><h3>Categorias</h3></Text>
-                <CategoriasCardMain categorias={categorias}></CategoriasCardMain>
+                <CategoriasCardMain onAvatarClick={value => handleAvatarClick(value)} categorias={categorias}/>
             </CardBody>
         </Card>
     )
