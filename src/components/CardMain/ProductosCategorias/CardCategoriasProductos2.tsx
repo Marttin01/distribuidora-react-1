@@ -1,5 +1,6 @@
 import { Avatar, WrapItem } from "@chakra-ui/react";
 
+
 interface Props {
     onAvatarClick: (value: boolean) => void;
     nombre:string;
@@ -14,9 +15,11 @@ function CardCategoriasProductos2({nombre,imgSrc,onAvatarClick}: Props) {
 
     return (
         <>
+        {
             <WrapItem mr={"10"}>
                 <Avatar size={'xl'} name={nombre} src={imgSrc} onClick={handleAvatarClick} />
-            </WrapItem>                 
+            </WrapItem>    
+        }        
         </>
 
     )
