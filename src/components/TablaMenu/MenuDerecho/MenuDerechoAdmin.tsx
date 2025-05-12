@@ -1,5 +1,6 @@
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure } from "@chakra-ui/react";
 import { useRef } from "react";
+import MenuDerechoBtnUsuarios from "./MenuDerechoBtnUsuarios";
 
 
 function MenuDerechoAdmin () {
@@ -19,7 +20,8 @@ function MenuDerechoAdmin () {
               <DrawerHeader>Admin panel</DrawerHeader>
 
               <DrawerBody>
-                
+                  <MenuDerechoBtnUsuarios/>
+
               </DrawerBody>
 
               <DrawerFooter>
