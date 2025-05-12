@@ -1,4 +1,4 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, useDisclosure } from "@chakra-ui/react";
 import { useRef } from "react";
 import MenuDerechoBtnUsuarios from "./MenuDerechoBtnUsuarios";
 
@@ -15,20 +15,20 @@ function MenuDerechoAdmin () {
           </Button>
           <Drawer isOpen={isOpen} placement='right' onClose={onClose} finalFocusRef={btnRef}>
             <DrawerOverlay/>
-            <DrawerContent>
+            <DrawerContent bg={"gray.200"}>
               <DrawerCloseButton />
               <DrawerHeader>Admin panel</DrawerHeader>
 
               <DrawerBody>
+                <Box w={"100%"}>
                   <MenuDerechoBtnUsuarios/>
-
+                </Box>
               </DrawerBody>
 
               <DrawerFooter>
-                <Button variant='outline' mr={3} onClick={onClose}>
-                  Cancel
+                <Button variant='outline' mr={3} onClick={onClose} bg={"lightgray"}>
+                  Cerrar menu
                 </Button>
-                <Button colorScheme='blue'>Save</Button>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
