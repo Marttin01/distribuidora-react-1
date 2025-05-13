@@ -17,9 +17,9 @@ function MenuDerechoAdmin () {
             <DrawerOverlay/>
             <DrawerContent bg={"gray.200"}>
               <DrawerCloseButton />
-              <DrawerHeader>Admin panel</DrawerHeader>
+              <DrawerHeader backgroundColor={"white"}>Admin panel</DrawerHeader>
 
-              <DrawerBody>
+              <DrawerBody padding={"0 !important"}>
                 <Box w={"100%"}>
                   <MenuDerechoBtnUsuarios/>
                 </Box>
