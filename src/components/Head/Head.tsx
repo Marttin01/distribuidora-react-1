@@ -24,23 +24,23 @@ const Head: FC = () => {
             <Flex 
                 direction="column" 
                 align="center" 
-                gap={2} // Reducido de 3
+                gap={2} 
             >
                 <Flex 
-                    gap={3} // Reducido de 4
+                    gap={3} 
                     align="center" 
-                    mb={1} // Reducido de 2
+                    mb={1} 
                 >
                     <Icon 
                         as={FaWineBottle} 
-                        w={6} // Reducido de 8
-                        h={6} // Reducido de 8
+                        w={6} 
+                        h={6} 
                         color="gray.600"
                         transform="rotate(-15deg)"
                     />
                     <Heading 
                         textAlign="center"
-                        fontSize={"xxx-large"} // Reducidos todos los tamaños
+                        fontSize={"xxx-large"}
                         fontWeight="bold"
                         bgGradient="linear(to-r, gray.700, gray.900)"
                         bgClip="text"

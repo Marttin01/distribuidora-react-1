@@ -104,7 +104,8 @@ return (
             transition: "transform 0.2s"
           }}
         >
-          <VStack spacing={1} align="start">
+          {(sesionado && !admin) &&  (
+         <VStack spacing={1} align="start">
             <Flex align="center" gap={1.5} borderBottom={0}>
               <Icon as={FiClock} color="gray.500" w={3} h={3} marginBottom="1px" />
               <Text fontSize={"xs"} color={"gray.500"} mt={1}>
@@ -118,6 +119,9 @@ return (
               </Text>
             </Flex>
           </VStack>
+          )
+          } 
+
         </Box>
 
         <Tab 
