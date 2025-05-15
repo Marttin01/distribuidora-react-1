@@ -1,70 +1,146 @@
-import {  ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Flex, Icon, Menu, MenuButton, MenuList, Text } from "@chakra-ui/react";
+import { Box, VStack, Button, Collapse, Icon, Text, Flex } from "@chakra-ui/react";
+import { 
+    FiUsers, 
+    FiUserPlus, 
+    FiSearch, 
+    FiList, 
+    FiChevronDown,
+    FiPackage,
+    FiPlusCircle,
+    FiUpload,
+    FiShoppingCart
+} from "react-icons/fi";
 import { useState } from "react";
-import CrearUsuario from "./MenuDerechoBtnFunciones/CrearUsuario";
-import BuscarUsuario from "./MenuDerechoBtnFunciones/BuscarUsuario";
-import Usuarios from "./MenuDerechoBtnFunciones/Usuarios";
-import CrearProducto from "./MenuDerechoBtnFunciones/CrearProducto";
-import CargarProductos from "./MenuDerechoBtnFunciones/CargarProductos";
-import BuscarProducto from "./MenuDerechoBtnFunciones/BuscarProducto";
-import BuscarCarrito from "./MenuDerechoBtnFunciones/BuscarCarrito";
 
+interface MenuSectionProps {
+    title: string;
+    icon: any;
+    options: {
+        name: string;
+        icon: any;
+        onClick?: () => void;
+    }[];
+}
 
-const MenuDerechoBotones = () => {
-    
-    const [botonApretado, setBotonApretado] = useState<boolean>(false);
-
-    const handleClickbutton = () => {
-        setBotonApretado(botonApretado?false:true);
-    }
+const MenuSection = ({ title, icon, options }: MenuSectionProps) => {
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <>
+        <Box mb={4}>
+            {/* Botón principal de la sección */}
+            <Button
+                onClick={() => setIsOpen(!isOpen)}
+                width="100%"
+                bg={isOpen ? "white" : "gray.200"}
+                border="1px solid"
+                borderColor={isOpen ? "gray.300" : "gray.200"}
+                borderRadius="full"
+                py={6}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                transition="all 0.2s"
+                _hover={{
+                    bg: "white",
+                    shadow: "sm"
+                }}
+            >
+                <Flex align="center" gap={3}>
+                    <Icon as={icon} boxSize={5} />
+                    <Text fontWeight="medium">{title}</Text>
+                </Flex>
+                <Icon
+                    as={FiChevronDown}
+                    transform={isOpen ? "rotate(-180deg)" : ""}
+                    transition="transform 0.2s"
+                />
+            </Button>
 
-        <Box mb={4} pt={1}>
-            <Text fontSize="xxs" fontWeight="bold" mb={2} mt={4} ml={4}>USUARIOS</Text>
-            <Menu>
-                <MenuButton borderStartEndRadius={"none"} px={4} py={2} width={"150px"} transition='all 0.2s' borderRadius='md' bg={"gray.200"} borderWidth='1px' borderColor={"gray.200"} _hover={{ backgroundColor: "white" }} _expanded={{ bg: 'white', width:"100%",outline:"none !important" }} _focus={{ boxShadow: 'none'}} position={"relative"} fontWeight={"bold"} onClick={handleClickbutton}>
-                <Flex alignItems="center" justifyContent={"space-between"}>Usuarios{botonApretado && (<Icon as={ChevronRightIcon} ml={2} />)}{!botonApretado && (<Icon as={ChevronDownIcon} ml={2} />)} </Flex>
-                </MenuButton>
+            {/* Menú desplegable */}
+            <Collapse in={isOpen}>
+                <VStack
+                    spacing={2}
+                    mt={2}
+                    pl={4}
+                >
+                    {options.map((option, index) => (
+                        <Button
+                            key={index}
+                            variant="ghost"
+                            width="100%"
+                            justifyContent="flex-start"
+                            borderRadius="full"
+                            py={5}
+                            leftIcon={<Icon as={option.icon} />}
+                            onClick={option.onClick}
+                            _hover={{
+                                bg: "gray.100"
+                            }}
+                        >
+                            {option.name}
+                        </Button>
+                    ))}
+                </VStack>
+            </Collapse>
+        </Box>
+    );
+};
 
-                <MenuList bg={"none !important"} boxShadow={"none"} >
-                    <CrearUsuario></CrearUsuario>
-                    <BuscarUsuario></BuscarUsuario>
-                    <Usuarios></Usuarios>
-                </MenuList>
-            </Menu>
-      </Box>
+const MenuDerechoBotones = () => {
+    const sections = [
+        {
+            title: "Usuarios",
+            icon: FiUsers,
+            options: [
+                { name: "Crear Usuario", icon: FiUserPlus },
+                { name: "Buscar Usuario", icon: FiSearch },
+                { name: "Lista de Usuarios", icon: FiList }
+            ]
+        },
+        {
+            title: "Productos",
+            icon: FiPackage,
+            options: [
+                { name: "Crear Producto", icon: FiPlusCircle },
+                { name: "Cargar Productos", icon: FiUpload },
+                { name: "Buscar Producto", icon: FiSearch }
+            ]
+        },
+        {
+            title: "Carritos",
+            icon: FiShoppingCart,
+            options: [
+                { name: "Buscar Carrito", icon: FiSearch }
+            ]
+        }
+    ];
 
-        <Box mt={25}/>
-        <Text fontSize="xxs" fontWeight="bold" mb={2} mt={4} ml={4}>PRODUCTOS</Text>
-        <Menu>
-            <MenuButton _focusVisible={{outline:"none", boxShadow:"none"}} px={4} py={2} width={"150px"} transition='all 0.2s' borderRadius='md' bg={"gray.200"} borderWidth='1px' borderColor={"gray.200"} _hover={{ backgroundColor: "white" }} _expanded={{ bg: 'white', width:"100%", outline:"none !important"}} _focus={{ outline:"none",boxShadow: 'none'}} position={"relative"} fontWeight={"bold"} onClick={handleClickbutton} _active={{outline:"none !important", boxShadow:"none !important"}} >
-            <Flex alignItems="center" justifyContent={"space-between"}>Productos{botonApretado && (<Icon as={ChevronRightIcon} ml={2} />)}{!botonApretado && (<Icon as={ChevronDownIcon} ml={2} />)} </Flex>
-            </MenuButton>
-            <MenuList bg={"none !important"} boxShadow={"none"}>               
-                <CrearProducto></CrearProducto>
-                <CargarProductos></CargarProductos>
-                <BuscarProducto></BuscarProducto>
-            </MenuList>
-        </Menu>
-        
-        <Box mt={25}/>
-        <Text fontSize="xxs" fontWeight="bold" mb={2} mt={4} ml={4}>CARRITOS</Text>
-        <Menu>
-            <MenuButton _focusVisible={{outline:"none", boxShadow:"none"}} px={4} py={2} width={"150px"} transition='all 0.2s' borderRadius='md' bg={"gray.200"} borderWidth='1px' borderColor={"gray.200"} _hover={{ backgroundColor: "white" }} _expanded={{ bg: 'white', width:"100%"}} _focus={{ outline:"none",boxShadow: 'none'}} position={"relative"} fontWeight={"bold"} onClick={handleClickbutton} _active={{outline:"none !important", boxShadow:"none !important"}} >
-            <Flex alignItems="center" justifyContent={"space-between"}>Carritos{botonApretado && (<Icon as={ChevronRightIcon} ml={2} />)}{!botonApretado && (<Icon as={ChevronDownIcon} ml={2} />)} </Flex>
-            </MenuButton>
-            <MenuList bg={"none !important"} boxShadow={"none"}> 
-                <BuscarCarrito></BuscarCarrito>
-            </MenuList>
-        </Menu>
-
-
-
-        </>
-    )
-
-}
+    return (
+        <Box p={4} bg="white" borderRadius="2xl" shadow="sm">
+            <VStack spacing={6} align="stretch">
+                {sections.map((section, index) => (
+                    <Box key={index}>
+                        <Text 
+                            fontSize="xs" 
+                            fontWeight="bold" 
+                            mb={2} 
+                            ml={4} 
+                            color="gray.700"
+                            textTransform="uppercase"
+                            letterSpacing="wide"
+                        >
+                            {section.title}
+                        </Text>
+                        <MenuSection
+                            title={section.title}
+                            icon={section.icon}
+                            options={section.options}
+                        />
+                    </Box>
+                ))}
+            </VStack>
+        </Box>
+    );
+};
 
 export default MenuDerechoBotones;

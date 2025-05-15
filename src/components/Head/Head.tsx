@@ -1,71 +1,95 @@
-import { Box, Heading, Text, Flex, Icon } from "@chakra-ui/react"
-import { FaWineBottle, FaGlassCheers } from "react-icons/fa"
+import { Box, Heading, Text, Flex } from "@chakra-ui/react"
 import { FC } from 'react'
 
 const Head: FC = () => {
     return (
         <Box 
             as="section" 
-            py={4} 
             mt="16" 
             position="relative"
-            _before={{
-                content: '""',
-                position: 'absolute',
-                bottom: '0',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '100px',
-                height: '2px', 
-                background: 'linear-gradient(90deg, #CBD5E0, #2D3748, #CBD5E0)',
-                borderRadius: 'full'
-            }}
+            overflow="hidden"
         >
-            <Flex 
-                direction="column" 
-                align="center" 
-                gap={2} 
+            {/* Contenedor principal */}
+            <Box
+                w="100%"
+                bg="ButtonShadow"
+                py={10}
+                position="relative"
             >
                 <Flex 
-                    gap={3} 
+                    direction="column" 
                     align="center" 
-                    mb={1} 
+                    gap={6}
+                    position="relative"
+                    zIndex={1}
                 >
-                    <Icon 
-                        as={FaWineBottle} 
-                        w={6} 
-                        h={6} 
-                        color="gray.600"
-                        transform="rotate(-15deg)"
-                    />
-                    <Heading 
-                        textAlign="center"
-                        fontSize={"xxx-large"}
-                        fontWeight="bold"
-                        bgGradient="linear(to-r, gray.700, gray.900)"
-                        bgClip="text"
-                        letterSpacing="tight"
+                    {/* Título principal */}
+                    <Box
+                        maxW="1200px"
+                        w="100%"
+                        px={4}
+                        position="relative"
                     >
-                        ¿Qué productos vas a pedir hoy?
-                    </Heading>
-                    <Icon 
-                        as={FaGlassCheers} 
-                        w={6} // Reducido de 8
-                        h={6} // Reducido de 8
-                        color="gray.600"
-                        transform="rotate(15deg)"
-                    />
+                        <Heading 
+                            textAlign="center"
+                            fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+                            fontWeight="bold"
+                            color="black"
+                            letterSpacing="wide"
+                            textTransform="uppercase"
+                            py={3}
+                            position="relative"
+                            _after={{
+                                content: '""',
+                                position: "absolute",
+                                bottom: "0",
+                                left: "50%",
+                                transform: "translateX(-50%)",
+                                width: "80px",
+                                height: "3px",
+                                bg: "black",
+                                borderRadius: "full"
+                            }}
+                        >
+                            ¿QUÉ PRODUCTOS VAS A PEDIR HOY?
+                        </Heading>
+                    </Box>
+
+                    {/* Subtítulo */}
+                    <Box
+                        bg="white"
+                        py={3}
+                        px={8}
+                        borderRadius="full"
+                        boxShadow="md"
+                        maxW="max-content"
+                        mx="auto"
+                        transition="all 0.3s ease"
+                        _hover={{
+                            boxShadow: "lg",
+                            transform: "translateY(-2px)"
+                        }}
+                    >
+                        <Text 
+                            fontSize={{ base: "sm", md: "md" }}
+                            fontWeight="medium"
+                            color="gray.700"
+                            textAlign="center"
+                            letterSpacing="tight"
+                        >
+                            Descubrí nuestra amplia selección de bebidas premium para tu negocio
+                        </Text>
+                    </Box>
                 </Flex>
-                <Text 
-                    color="gray.600" 
-                    fontSize={{ base: "xs", md: "sm" }} // Reducidos los tamaños
-                    maxW="2xl"
-                    textAlign="center"
-                    px={3} // Reducido de 4
-                >
-                    Descubrí nuestra amplia selección de bebidas premium para tu negocio
-                </Text>
-            </Flex>
+            </Box>
+
+            {/* Decoración inferior simple */}
+            <Box
+                width="100%"
+                height="1px"
+                bg="gray.200"
+                mt={6}
+            />
         </Box>
     )
 }
