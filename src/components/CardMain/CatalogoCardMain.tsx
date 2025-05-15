@@ -345,21 +345,24 @@ function CatalogoCardMain ({categoria2} : Props) {
    ]
 
    const [categoriaActual, setCategoriaActual] = useState<string | null>(null);
+   const [categoriaYsubcategoriaActual, setCategoriaYsubcategoriaActual] = useState<string | null>(null);
    
    
     const handleAvatarClick = (value : boolean, categoria  : string) => {
       if(value) {
         setCategoriaActual(categoria);
+        setCategoriaYsubcategoriaActual(null);
       }
     }
 
     const handleAvatarClick2 = (categoria : string) =>{
-      setCategoriaActual(categoria);
+      setCategoriaYsubcategoriaActual(categoria);
     }
    
     const handleCloseIconClick = (value : boolean) => {
       if(value){
-        setCategoriaActual(null);;
+        setCategoriaActual(null);
+        setCategoriaYsubcategoriaActual(null);
       }  
     }
 
@@ -375,24 +378,29 @@ function CatalogoCardMain ({categoria2} : Props) {
         <Center display={"flex"} flexDirection={"column"} >
         <SimpleGrid marginTop={1} boxSize={'auto'} maxWidth={'100%'}spacing={1} alignItems={'center'} templateColumns='repeat(1, 1fr)' justifyContent={"center"}>
 
-          {!categoriaActual  &&(
+          {(!categoriaActual && !categoriaYsubcategoriaActual)  &&(
             <>
                {categorias.map( (categoria,index) => (<CardCategorias key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={(value,categoria) => handleAvatarClick(value, categoria)}></CardCategorias>))}
-                {/* {categorias.map( (categoria,index) => (<CardCategorias ref={(ref) => handleAvatarClick(true,categoria.                nombre,ref)} key={index} titulo={categoria.titulo} subCategorias={categoria.subCategorias} imgSrc={categoria.imgSrc} nombre={categoria.nombre} onAvatarClick={handleAvatarClick}></CardCategorias>))} */}
             </>
           )}
 
-          {categoriaActual &&(
+          {(categoriaActual && !categoriaYsubcategoriaActual) &&(
             <>
               <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaActual)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaActual)?.productos || []}/>
             </>
           )}
 
-          {/* {categoriaSeleccionada2 &&(
+          {(!categoriaActual && categoriaYsubcategoriaActual) && (
             <>
-              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={categorias.find(c => c.nombre === categoriaSeleccionada2)?.productos || categorias.flatMap(c => c.subCategorias).find(s => s.nombre === categoriaSeleccionada2)?.productos || []}/>
+              <CardCategoriasProductosMain onCloseIconClick={handleCloseIconClick} productos={(() => {
+                const categoriaEncontrada = categorias.find( c => c.nombre === categoriaYsubcategoriaActual)
+                if(!categoriaEncontrada) return [];
+                const productosCategoria = categoriaEncontrada.productos || []
+                const productosSubCategorias = categoriaEncontrada.subCategorias?.flatMap( s => s.productos) || []
+                return [...productosCategoria,...productosSubCategorias]
+            })()}/>
             </>
-          )} */}
+          )}
 
         </SimpleGrid>
         </Center>
