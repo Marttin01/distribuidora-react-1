@@ -107,6 +107,38 @@ import { useState, useEffect } from "react"
                 stock:10
               }
             ]
+          },
+          {
+            nombre:"pepsi",
+            titulo:"PEPSI",
+            descripcion:"Gaseosas marca pepsi",
+            imgSrc:"https://bit.ly/kent-c-dodds",
+            productos:[
+              {
+                nombre:"Pepsi 500ml x6",
+                precio:1000,
+                descripcion:"Pepsi sabor original zero",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 1L x6",
+                precio:2000,
+                descripcion:"Pepsi sabor original",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 2L x6",
+                precio:4000,
+                descripcion:"Pepsi sabor original",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              }
+            ]
           }
         ]
       },
@@ -401,14 +433,14 @@ function CardMain({onAvatarClick}: Props) {
     return (
         <Card 
             backgroundColor={'ButtonShadow'} 
-            p={6}
+            p={2}
             mt={7}
             borderRadius="xl"
             boxShadow="sm"
         >
             <CardBody>
                 <Heading 
-                    size="md" 
+                    size="lg" 
                     mb={4}
                     color="gray.700"
                     fontWeight="bold"
@@ -419,10 +451,10 @@ function CardMain({onAvatarClick}: Props) {
                 <Flex 
                     position="relative" 
                     align="center" 
-                    bg="white" 
-                    p={4} 
-                    borderRadius="xl"
-                    boxShadow="sm"
+                    bg="ButtonShadow" 
+                    p={0} 
+                    borderRadius="none"
+                    boxShadow="none"
                 >
                     {showLeftArrow && (
                         <IconButton

@@ -107,6 +107,102 @@ function CatalogoCardMain ({categoria2} : Props) {
                 stock:10
               }
             ]
+          },
+          {
+            nombre:"pepsi",
+            titulo:"PEPSI",
+            descripcion:"Gaseosas marca pepsi",
+            imgSrc:"https://bit.ly/kent-c-dodds",
+            productos:[
+              {
+                nombre:"Pepsi 500ml x6",
+                precio:1000,
+                descripcion:"Pepsi sabor original zero",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 1L x6",
+                precio:2000,
+                descripcion:"Pepsi sabor original",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 2L x6",
+                precio:4000,
+                descripcion:"Pepsi sabor original",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsi",
+                stock:10
+              }
+            ]
+          },
+          {
+            nombre:"pepsizero",
+            titulo:"PEPSI ZERO",
+            descripcion:"Gaseosas marca pepsi zero azucar",
+            imgSrc:"https://bit.ly/kent-c-dodds",
+            productos:[
+              {
+                nombre:"Pepsi 500ml zero x6",
+                precio:1000,
+                descripcion:"Pepsi sabor original zero",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsizero",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 1L zero x6",
+                precio:2000,
+                descripcion:"Pepsi sabor original zero azucar",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsizero",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 2L zero x6",
+                precio:4000,
+                descripcion:"Pepsi sabor original zero",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsizero",
+                stock:10
+              }
+            ]
+          },
+          {
+            nombre:"pepsitwist",
+            titulo:"PEPSI TWIST",
+            descripcion:"Gaseosas marca pepsi twist",
+            imgSrc:"https://bit.ly/kent-c-dodds",
+            productos:[
+              {
+                nombre:"Pepsi 500ml twist x6",
+                precio:1000,
+                descripcion:"Pepsi sabor original twist",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsitwist",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 1L twist x6",
+                precio:2000,
+                descripcion:"Pepsi sabor original twist",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsitwist",
+                stock:10
+              },
+              {
+                nombre:"Pepsi 2L twist x6",
+                precio:4000,
+                descripcion:"Pepsi sabor original twist",
+                imgSrc:"https://bit.ly/prosper-baba",
+                categoria:"pepsitwist",
+                stock:10
+              }
+            ]
           }
         ]
       },
