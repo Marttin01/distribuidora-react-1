@@ -1,5 +1,14 @@
-import { Card, CardBody, Text } from "@chakra-ui/react"
+import { 
+  Card, 
+  CardBody, 
+  IconButton, 
+  Flex, 
+  Box,
+  Heading
+} from "@chakra-ui/react"
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import CategoriasCardMain from "./CategoriasCardMain"
+import { useState, useEffect } from "react"
 
     const categorias = [
 
@@ -335,21 +344,144 @@ import CategoriasCardMain from "./CategoriasCardMain"
 
    ]
 
-interface Props {
+   interface Props {
     onAvatarClick: (value: string) => void;
+}
+
+function CardMain({onAvatarClick}: Props) {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [showLeftArrow, setShowLeftArrow] = useState(true);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+
+    const handleAvatarClick = (categoria: string) => {
+        onAvatarClick(categoria);
     }
 
-function CardMain ({onAvatarClick}: Props)  {
+    const handleScroll = (direction: 'left' | 'right') => {
+        const container = document.getElementById('categories-container');
+        if (container) {
+            const scrollAmount = 200;
+            const newPosition = direction === 'left' 
+                ? scrollPosition - scrollAmount 
+                : scrollPosition + scrollAmount;
 
-    const handleAvatarClick = (categoria : string) => {
-      onAvatarClick(categoria);
+            container.scrollTo({
+                left: newPosition,
+                behavior: 'smooth'
+            });
+
+            setScrollPosition(newPosition);
+        }
     }
+
+    const checkScrollButtons = () => {
+        const container = document.getElementById('categories-container');
+        if (container) {
+            setShowLeftArrow(container.scrollLeft > 0);
+            setShowRightArrow(
+                container.scrollLeft < (container.scrollWidth - container.clientWidth)
+            );
+        }
+    }
+
+    useEffect(() => {
+        const container = document.getElementById('categories-container');
+        if (container) {
+            container.addEventListener('scroll', checkScrollButtons);
+            checkScrollButtons();
+        }
+
+        return () => {
+            if (container) {
+                container.removeEventListener('scroll', checkScrollButtons);
+            }
+        };
+    }, []);
 
     return (
-        <Card backgroundColor={'ButtonShadow'} padding={'15'} align={'initial'} mt={"7"}>
+        <Card 
+            backgroundColor={'ButtonShadow'} 
+            p={6}
+            mt={7}
+            borderRadius="xl"
+            boxShadow="sm"
+        >
             <CardBody>
-                <Text ><h3>Categorias</h3></Text>
-                <CategoriasCardMain onAvatarClick={value => handleAvatarClick(value)} categorias={categorias}/>
+                <Heading 
+                    size="md" 
+                    mb={4}
+                    color="gray.700"
+                    fontWeight="bold"
+                >
+                    Categorías
+                </Heading>
+
+                <Flex 
+                    position="relative" 
+                    align="center" 
+                    bg="white" 
+                    p={4} 
+                    borderRadius="xl"
+                    boxShadow="sm"
+                >
+                    {showLeftArrow && (
+                        <IconButton
+                            aria-label="Scroll left"
+                            icon={<ChevronLeftIcon boxSize={6} color="white" />}
+                            position="absolute"
+                            left={2}
+                            top="50%"
+                            transform="translateY(-50%)"
+                            zIndex={2}
+                            rounded="full"
+                            bg="black"
+                            shadow="lg"
+                            onClick={() => handleScroll('left')}
+                            _hover={{
+                                bg: 'gray.800'
+                            }}
+                            size="md"
+                        />
+                    )}
+
+                    <Box
+                        id="categories-container"
+                        overflow="hidden"
+                        css={{
+                            scrollbarWidth: 'none',
+                            '&::-webkit-scrollbar': {
+                                display: 'none'
+                            },
+                        }}
+                        mx={10}
+                        width="100%"
+                    >
+                        <CategoriasCardMain 
+                            onAvatarClick={handleAvatarClick} 
+                            categorias={categorias}
+                        />
+                    </Box>
+
+                    {showRightArrow && (
+                        <IconButton
+                            aria-label="Scroll right"
+                            icon={<ChevronRightIcon boxSize={6} color="white" />}
+                            position="absolute"
+                            right={2}
+                            top="50%"
+                            transform="translateY(-50%)"
+                            zIndex={2}
+                            rounded="full"
+                            bg="black"
+                            shadow="lg"
+                            onClick={() => handleScroll('right')}
+                            _hover={{
+                                bg: 'gray.800'
+                            }}
+                            size="md"
+                        />
+                    )}
+                </Flex>
             </CardBody>
         </Card>
     )

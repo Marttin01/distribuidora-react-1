@@ -19,8 +19,9 @@ import {
   Text
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { FiUsers, FiShoppingBag, FiDollarSign, FiActivity } from 'react-icons/fi';
+import { FiUsers, FiDollarSign, FiActivity } from 'react-icons/fi';
 import MenuDerechoBotones from "./MenuDerechoBotones";
+import NuevoProducto from "./MenuDerechoBtnFunciones/MenuDerechoFunciones/NuevoProducto";
 
 function MenuDerechoAdmin() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -88,9 +89,7 @@ function MenuDerechoAdmin() {
                       <Box bg="white" p={4} borderRadius="none" shadow="sm" mb={4}>
                           <Text fontWeight="bold" mb={3}>Acciones Rápidas</Text>
                           <Flex gap={2} flexWrap="wrap">
-                              <Button leftIcon={<Icon as={FiShoppingBag} />} size="sm">
-                                  Nuevo Producto
-                              </Button>
+                                <NuevoProducto></NuevoProducto>
                               <Button leftIcon={<Icon as={FiDollarSign} />} size="sm">
                                   Nueva Venta
                               </Button>
@@ -101,7 +100,7 @@ function MenuDerechoAdmin() {
                       </Box>
 
                       {/* Menu Buttons */}
-                      <Box w={"100%"} bg="gray.200" borderRadius="lg" shadow="sm" pl={0}>
+                      <Box w={"100%"} bg="gray.200" borderRadius="none !important" shadow="sm" pl={0}>
                           <MenuDerechoBotones/>
                       </Box>
                   </DrawerBody>

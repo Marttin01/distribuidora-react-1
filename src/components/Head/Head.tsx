@@ -1,7 +1,35 @@
 import { Box, Heading, Text, Flex } from "@chakra-ui/react"
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 const Head: FC = () => {
+    const fullText = "Descubrí nuestra amplia selección de bebidas premium para tu negocio";
+    const [displayText, setDisplayText] = useState("");
+    const [showDots, setShowDots] = useState(false);
+
+    useEffect(() => {
+        setDisplayText(""); // Reset del texto
+        let timeouts: number[] = []; // Cambiado el tipo
+        
+        // Escribimos el texto caracter por caracter
+        [...fullText].forEach((char, index) => {
+            const timeout = setTimeout(() => {
+                setDisplayText(text => text + char);
+                if (index === fullText.length - 1) {
+                    setShowDots(true);
+                }
+            }, 50 * index);
+            
+            timeouts.push(timeout);
+        });
+
+        // Limpieza de timeouts
+        return () => {
+            timeouts.forEach(timeout => clearTimeout(timeout));
+            setDisplayText("");
+            setShowDots(false);
+        };
+    }, []);
+
     return (
         <Box 
             as="section" 
@@ -9,7 +37,7 @@ const Head: FC = () => {
             position="relative"
             overflow="hidden"
         >
-            {/* Contenedor principal */}
+            {/* El resto del código sigue igual */}
             <Box
                 w="100%"
                 bg="ButtonShadow"
@@ -23,7 +51,6 @@ const Head: FC = () => {
                     position="relative"
                     zIndex={1}
                 >
-                    {/* Título principal */}
                     <Box
                         maxW="1200px"
                         w="100%"
@@ -55,7 +82,6 @@ const Head: FC = () => {
                         </Heading>
                     </Box>
 
-                    {/* Subtítulo */}
                     <Box
                         bg="white"
                         py={3}
@@ -76,14 +102,32 @@ const Head: FC = () => {
                             color="gray.700"
                             textAlign="center"
                             letterSpacing="tight"
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
                         >
-                            Descubrí nuestra amplia selección de bebidas premium para tu negocio
+                            {displayText}
+                            {showDots && (
+                                <Text
+                                    as="span"
+                                    ml={1}
+                                    sx={{
+                                        animation: 'blink 1.5s infinite',
+                                        '@keyframes blink': {
+                                            '0%': { opacity: 0 },
+                                            '50%': { opacity: 1 },
+                                            '100%': { opacity: 0 }
+                                        }
+                                    }}
+                                >
+                                    ...
+                                </Text>
+                            )}
                         </Text>
                     </Box>
                 </Flex>
             </Box>
 
-            {/* Decoración inferior simple */}
             <Box
                 width="100%"
                 height="1px"

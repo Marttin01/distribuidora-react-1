@@ -16,7 +16,7 @@ function CatalogoCardMain ({categoria2} : Props) {
         nombre: "gaseosasCola",
         titulo:"GASEOSAS COLAS",
         descripcion:" Gaseosas marca coca cola",
-        imgSrc:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/400px-Coca-Cola_logo.svg.png",
+        imgSrc:"https://bit.ly/code-beast",
         productos:[
           {
             nombre:"Coca Cola 500ml x6",

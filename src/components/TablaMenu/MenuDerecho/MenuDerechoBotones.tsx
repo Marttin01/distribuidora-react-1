@@ -34,7 +34,7 @@ const MenuSection = ({ title, icon, options }: MenuSectionProps) => {
                 bg={isOpen ? "white" : "gray.200"}
                 border="1px solid"
                 borderColor={isOpen ? "gray.300" : "gray.200"}
-                borderRadius="full"
+                borderRadius="lg"
                 py={6}
                 display="flex"
                 justifyContent="space-between"
